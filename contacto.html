@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - MotoGP 2025</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>MotoGP 2025</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="historia.html">Historia</a></li>
+                <li><a href="pilotos-equipos.html">Pilotos y Equipos</a></li>
+                <li><a href="calendario.html">Calendario</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="resultados.html">Resultados</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <form id="form-contacto" style="max-width:400px; margin:auto;">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required style="width:100%;"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required style="width:100%;"><br>
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje" required style="width:100%;"></textarea><br>
+                <button type="submit">Enviar</button>
+                <div id="form-msg" style="color:#b71c1c; margin-top:0.5em;"></div>
+            </form>
+        </section>
+        <script>
+        document.getElementById('form-contacto').addEventListener('submit',function(e){
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mensaje = document.getElementById('mensaje').value.trim();
+            const msg = document.getElementById('form-msg');
+            if(nombre.length<2){msg.textContent='El nombre es muy corto.';return;}
+            if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){msg.textContent='Email inválido.';return;}
+            if(mensaje.length<5){msg.textContent='El mensaje es muy corto.';return;}
+            msg.style.color='green';
+            msg.textContent='¡Mensaje enviado correctamente!';
+            this.reset();
+        });
+        </script>
+    </main>
+    <footer>
+        <p>© 2025 Fanpage MotoGP. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilotos y Equipos - MotoGP 2025</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>MotoGP 2025</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="historia.html">Historia</a></li>
+                <li><a href="pilotos-equipos.html">Pilotos y Equipos</a></li>
+                <li><a href="calendario.html">Calendario</a></li>
+                <li><a href="noticias.html">Noticias</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="resultados.html">Resultados</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Buscar Piloto o Equipo</h2>
+            <input type="text" id="buscador" placeholder="Buscar por nombre..." style="padding:0.5em; width:60%;">
+            <ul id="resultados-busqueda"></ul>
+        </section>
+        <section>
+            <h2>Ranking de Pilotos 2025</h2>
+            <ol id="ranking-pilotos"></ol>
+        </section>
+        <section id="pilotos-equipos">
+            <h2>Pilotos y Equipos</h2>
+            <article>
+                <h3>Marc Márquez (Ducati)</h3>
+                <p>Campeón del mundo 2013–2014–2016–2017. Seis victorias en 2025 hasta la fecha.</p>
+                <img src="marc-marquez-ducati-2.jpg" alt="Marc Márquez con Ducati">
+            </article>
+            <article>
+                <h3>Jorge Martin (Yamaha)</h3>
+                <p>Campeón 2024. Varias poles y podios en la presente temporada.</p>
+                <img src="Jorge Martin.jpg" alt="Jorge Martin con Apriia">
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Fanpage MotoGP. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+    // Datos de ejemplo para pilotos
+    const pilotos = [
+        {nombre: 'M. Márquez', equipo: 'Ducati', puntos: 487},
+        {nombre: 'A. Márquez', equipo: 'Gresini', puntos: 305},
+        {nombre: 'F. Bagnaia', equipo: 'Ducati', puntos: 237},
+        {nombre: 'M. Bezzecchi', equipo: 'Aprilia', puntos: 197},
+        {nombre: 'P. Acosta', equipo: 'KTM', puntos: 183},
+        {nombre: 'F. Morbidelli', equipo: 'VR46', puntos: 161},
+        {nombre: 'F. Di Giannantonio', equipo: 'VR46', puntos: 161},
+        {nombre: 'F. Quartararo', equipo: 'Yamaha', puntos: 129},
+        {nombre: 'F. Aldeguer', equipo: 'Gresini', puntos: 127},
+        {nombre: 'J. Zarco', equipo: 'Honda', puntos: 117}
+    ];
+    // Ranking
+    const ranking = pilotos.slice().sort((a,b)=>b.puntos-a.puntos);
+    const rankingList = document.getElementById('ranking-pilotos');
+    ranking.forEach(p=>{
+        const li = document.createElement('li');
+        li.textContent = `${p.nombre} (${p.equipo}) - ${p.puntos} pts`;
+        rankingList.appendChild(li);
+    });
+    // Buscador
+    const buscador = document.getElementById('buscador');
+    const resultados = document.getElementById('resultados-busqueda');
+    buscador.addEventListener('input', function() {
+        resultados.innerHTML = '';
+        const texto = buscador.value.toLowerCase();
+        if(texto.length>0){
+            pilotos.filter(p=>p.nombre.toLowerCase().includes(texto)||p.equipo.toLowerCase().includes(texto)).forEach(p=>{
+                const li = document.createElement('li');
+                li.textContent = `${p.nombre} (${p.equipo}) - ${p.puntos} pts`;
+                resultados.appendChild(li);
+            });
+        }
+    });
+    </script>
+</body>
+</html>
